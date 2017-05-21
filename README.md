@@ -2,19 +2,19 @@
 Le document présent est un résumé / mémo de la procédure d'installation d'un service Active Directory classique dans le cadre d'une entreprise comme d'un laboratoire. Il décrit l'intégralité des différentes manipulations à effectuer pour fournir tous les services dont une entreprise aurait besoin. Ces services sont décrits ci-dessous.
 
 ## Sommaire
-1. [Architecture](https://github.com/Clement-Ruiz/active-directory-memo#architecture)
+* [Architecture](https://github.com/Clement-Ruiz/active-directory-memo#architecture)
   * [Machines](https://github.com/Clement-Ruiz/active-directory-memo#machines)
   * [Réseau](https://github.com/Clement-Ruiz/active-directory-memo#r%C3%A9seau)
-2. [Installation des OS et des premières fonctionnalités](https://github.com/Clement-Ruiz/active-directory-memo#installation-des-os-et-des-premi%C3%A8res-fonctionnalit%C3%A9s)
+* [Installation des OS et des premières fonctionnalités](https://github.com/Clement-Ruiz/active-directory-memo#installation-des-os-et-des-premi%C3%A8res-fonctionnalit%C3%A9s)
   * [Systèmes d'exploitation](https://github.com/Clement-Ruiz/active-directory-memo#syst%C3%A8mes-dexploitation)
     * [Serveur](https://github.com/Clement-Ruiz/active-directory-memo#serveur)
     * [Client](https://github.com/Clement-Ruiz/active-directory-memo#client)
   * [DNS / DHCP / Active Directory](https://github.com/Clement-Ruiz/active-directory-memo#dns--dhcp--active-directory)
   * [Serveur de fichier et DFS](https://github.com/Clement-Ruiz/active-directory-memo#serveur-de-fichier-et-dfs)
-3. [Installation des services](https://github.com/Clement-Ruiz/active-directory-memo#installation-des-services)
+* [Installation des services](https://github.com/Clement-Ruiz/active-directory-memo#installation-des-services)
   * [IIS & Services d'impression](https://github.com/Clement-Ruiz/active-directory-memo#iis--services-dimpression)
   * [WDS - Windows Deployment services](https://github.com/Clement-Ruiz/active-directory-memo#wds---windows-deployment-services)
-4. [Configuration et Features](https://github.com/Clement-Ruiz/active-directory-memo#configuration-et-features)
+* [Configuration et Features](https://github.com/Clement-Ruiz/active-directory-memo#configuration-et-features)
   * [Configuration type de l'AD](https://github.com/Clement-Ruiz/active-directory-memo#configuration-type-de-lad-en-entreprise)
   * [Quelques Stratégies de Groupe (GPO)](https://github.com/Clement-Ruiz/active-directory-memo#quelques-strat%C3%A9gies-de-groupe-gpo)
   * [Installation de BGInfo](https://github.com/Clement-Ruiz/active-directory-memo#bginfo)
@@ -203,7 +203,7 @@ Pour ce faire :
 * On **termine la configuration** en nommant l'imprimante, choisissant de **l'exposer sur le réseau** et lui attribuant un point d'accès sur l'AD.
 
 #### Monter un Répertoire Réseau pour un utilisateur
-Pour se faire, créer d'ores-et-déjà un répertoire dans lequel seront stockés les fichiers utilisateurs (Par exemple C:\\UserSpace) et on l'expose sur le réseau (via DFS pour un chemin UNC en fonction du domaine AD, via l'option de **Partage** dans les propriétés du dossier pour un UNC en fonction du hostname du serveur).</br>
+Pour se faire, créer d'ores-et-déjà un répertoire dans lequel seront stockés les fichiers utilisateurs (Par exemple C:\\UserSpace) et l'exposer sur le réseau (via DFS pour un chemin UNC en fonction du domaine AD, via l'option de **Partage** dans les propriétés du dossier pour un UNC en fonction du hostname du serveur).</br>
 A partir de là, dans l'interface de gestion des GPO se rendre dans **Configurations utilisateur** --> **Préférences** --> **Paramètres Windows** --> Clic droit sur **Mappages de lecteurs** --> **Nouveau** --> **Lecteur Mappé**. S'ouvre une fenêtre de création de nouveau lecteur. Dans celle-ci, on renseigne le nom, le chemin du dossier que l'on vient de créer suivi de "\\%USERNAME%" (ex : \\\\domain.com\\UserSpace\\%USERNAME%), nous permettant d'affecter cette règle dynamiquement en fonction de l'utilisateur.  Il est conseilllé de créer 2 règles avec les mêmes propriétés mais pour 2 actions différentes : **Créer** et **Mettre à Jour**.
 
 #### Paramétrer une limitation de stockage par utilisateur
