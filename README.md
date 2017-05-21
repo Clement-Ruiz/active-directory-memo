@@ -113,7 +113,7 @@ Ces 2 fonctionnalités sont facilement installables via le bouton **Gérer** du 
 Windows propose une [interface](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/IIS%20-%20Page%20d'accueil%20S1AD1.png) de création, administration et configuration de sites web sur une flotte de serveur présent dans un même domaine, que l'on peut trouver grâce au bouton **Outils** --> **Gestionnaire des services internet (IIS)** du **Gestionnaire de serveur**. Ajouter des pages, restreindre des IP, gérer directement les domaines et sous domaines, Imposer des authentifications ou activer le chiffrement des échanges par les protocoles SSL/TLS; toutes ces options sont disponibles depuis cet interface.
 
 #### Serveur d'impression
-On peut le configurer lui aussi depuis le bouton **Outils** --> **Gestion de l'impression** du **Gestionnaire de serveur**. Il permet de gérer les différentes imprimantes et serveurs d'impressions de l'AD, ainsi que les différents pilotes installés _([ScreenShot]()https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Gestion%20de%20L'impression.png)_. Une fonctionnalité permet de créer des filtres d'imprimantes pour les très grosses architectures.
+On peut le configurer lui aussi depuis le bouton **Outils** --> **Gestion de l'impression** du **Gestionnaire de serveur**. Il permet de gérer les différentes imprimantes et serveurs d'impressions de l'AD, ainsi que les différents pilotes installés _([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Gestion%20de%20L'impression.png))_. Une fonctionnalité permet de créer des filtres d'imprimantes pour les très grosses architectures.
 
 ### WDS - Windows Deployment Services
 #### Installation
