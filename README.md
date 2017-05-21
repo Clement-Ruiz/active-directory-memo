@@ -69,14 +69,14 @@ Nos machines sont prêtes à l'emploi. Installons les différents services de ba
 * Nous ajoutons maintenant S2AD2 au domaine que nous venons de créer. Pour ce faire, on se rend dans **l'Explorateur de fichier** de S2AD2.
   * Clic droit sur **Ce PC** --> **Prorpiétés**
   * Dans la section _Paramètres de nom de l'ordinateur, de domaine et de groupe de travail_ on clique sur **Modifier les paramètres**. Une fenêtre s'ouvre, et en bas de l'onglet _Nom de l'ordinateur_, nous cliquons sur **Modifier**
-  * Nous choisissons d'intégrer l'ordinateur au domaine créé précédement (ici domain.com). Une fenêtre d'authentification apparaît. Nous indiquons ici en utilisateur "Administrateur" et en mot de passe le mot de passe de l'administrateur de l'AD. Une fenêtre de confirmation nous souhaite la bienvenue dans le domaine "domain.com". Un redémarrage est nécessaire ici. Encore une fois,
+  * Nous choisissons d'intégrer l'ordinateur au domaine créé précédement (ici domain.com). Une fenêtre d'authentification apparaît. Nous indiquons ici en utilisateur "Administrateur" et en mot de passe le mot de passe de l'administrateur de l'AD. Une fenêtre de confirmation nous souhaite la bienvenue dans le domaine "domain.com". Un redémarrage est nécessaire ici.
 
 
 * Nous installons comme pour le serveur S1AD1 le rôle **Serveur AD DS** (sans les rôles DHCP et DNS) puis nous procédons à la configuration post-déploiement en cliquant sur **Promouvoir ce serveur en contrôleur de domaine** dans le menu des **Notifications**.
   * Nous **ajoutons le contrôleur de domaine à un domaine existant** : ici domain.com</br>
   Des informations d'authentification sont nécessaires : **on s'authentifie** en tant qu'administrateur du domaine (Administrateur/MotDePasseAdminDeActiveDirectory). </br>--> **Suivant**
   * Le nouveau contrôleur de domaine peut être utilisé comme DNS secondaire. Cocher ou non la case correspondante pour activer le rôle. On tape un **mot de passe DSRM** comme pour le 1er serveur AD. </br>--> **Suivant**
-  * Après vérification de la configuration, cliquer sur **Installer**. A la fin de l'installation, comme pour le premier serveur, un redémarrage sera nécessaire, et nous pourrons nous connecter en tant qu'utilisateur ou administrateur du domaine.
+  * Après vérification de la configuration, cliquer sur **Installer**. A la fin de l'installation, comme pour le premier serveur, un redémarrage sera nécessaire, et nous pourrons nous connecter en tant qu'utilisateur ou administrateur du domaine. _([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Domain%20Authent.png))_
 
 ### Serveur de fichier et DFS
 Le rôle **Serveur de fichier** est un des rôles les plus couramment utilisés. Pour que ce rôle soit utilisable, nous avons besoin d'une **partition NTFS** de données. On peut facilement en créer une depuis le **Gestionnaire de Serveur** via le bouton **Outils** en haut à droite et l'option **Gestion de l'ordinateur**. Dans la fenêtre qui s'ouvre, sélectionner l'onglet **Stockage** --> **Gestion des Disques**.
@@ -91,7 +91,7 @@ Pour commencer, nous allons créer un espace de nom en cliquant sur **Action** -
 * Choisir un type d'espace de nom (Local / Domaine)</br>--> **Suivant**
 * Confirmer la configuration et **Créer** l'espace de nom.
 
-Dès lors, nous pouvons accéder au contenu du dossier ainsi créé depuis n'importe quel ordinateur du domaine via l'explorateur de fichier ( \\\\domain.com\NomDeLEspaceDeNom ). Le chemin d'accès du dossier sur le serveur hébergeur est par défault sur la partition système (ex C:) dans C:\\_DFSRoots_\\_NomDeLEspaceDeNom_
+Dès lors, nous pouvons accéder au contenu du dossier ainsi créé depuis n'importe quel ordinateur du domaine via l'explorateur de fichier ( \\\\domain.com\NomDeLEspaceDeNom ). Le chemin d'accès du dossier sur le serveur hébergeur est par défault sur la partition système (ex C:) dans C:\\_DFSRoots_\\_NomDeLEspaceDeNom_ _([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/DFS.png))_
 
 #### Réplication DFS
 Toujours depuis le **Gestionnaire du système de fichier distribués DFS**, on crée un **Nouveau groupe de réplication**, et une fenêtre s'ouvre.
@@ -103,17 +103,17 @@ Toujours depuis le **Gestionnaire du système de fichier distribués DFS**, on c
 * Puis nous renseignons le **chemin du dossier de destination** sur chacun des serveurs membre du groupe de réplication (avec la possibilité de le paramétrer en lecture seule).
 * Finalement, on **Vérifie les paramètres** puis **Confirme** la création du groupe de réplication.
 
-Nos dossiers sont maintenant correctement répliqués sur chacun des membres du groupe de réplication.
+Nos dossiers sont maintenant correctement répliqués sur chacun des membres du groupe de réplication._([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Replication%20DFS.png))_
 
 ## Installation des services
 ### IIS & Services d'impression
 Ces 2 fonctionnalités sont facilement installables via le bouton **Gérer** du **Gestionnaire de serveur**. Comme pour les autres services, nous allons les sélectionner dans la liste, ajoutons les fonctionnalités proposées par défaut et procédons à l'installation.
 
 #### ISS - Serveur Web
-Windows propose une interface de création, administration et configuration de sites web sur une flotte de serveur présent dans un même domaine, que l'on peut trouver grâce au bouton **Outils** --> **Gestionnaire des services internet (IIS)** du **Gestionnaire de serveur**. Ajouter des pages, restreindre des IP, gérer directement les domaines et sous domaines, Imposer des authentifications ou activer le chiffrement des échanges par les protocoles SSL/TLS; toutes ces options sont disponibles depuis cet interface.
+Windows propose une [interface](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/IIS%20-%20Page%20d'accueil%20S1AD1.png) de création, administration et configuration de sites web sur une flotte de serveur présent dans un même domaine, que l'on peut trouver grâce au bouton **Outils** --> **Gestionnaire des services internet (IIS)** du **Gestionnaire de serveur**. Ajouter des pages, restreindre des IP, gérer directement les domaines et sous domaines, Imposer des authentifications ou activer le chiffrement des échanges par les protocoles SSL/TLS; toutes ces options sont disponibles depuis cet interface.
 
 #### Serveur d'impression
-On peut le configurer lui aussi depuis le bouton **Outils** --> **Gestion de l'impression** du **Gestionnaire de serveur**. Il permet de gérer les différentes imprimantes et serveurs d'impressions de l'AD, ainsi que les différents pilotes installés. Une fonctionnalité permet de créer des filtres d'imprimantes pour les très grosses architectures.
+On peut le configurer lui aussi depuis le bouton **Outils** --> **Gestion de l'impression** du **Gestionnaire de serveur**. Il permet de gérer les différentes imprimantes et serveurs d'impressions de l'AD, ainsi que les différents pilotes installés _([ScreenShot]()https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Gestion%20de%20L'impression.png)_. Une fonctionnalité permet de créer des filtres d'imprimantes pour les très grosses architectures.
 
 ### WDS - Windows Deployment Services
 #### Installation
@@ -125,7 +125,8 @@ Une fois installé on le configure : **Outils** --> **Services de déploiement W
 * Si un AD est installé sur le serveur et si celui en est un des contrôleurs de domaine, on peut **ajouter le service de déploiement au domaine de l'AD**. Nous choisissons ici cette option.
 * On **renseigne le chemin du dossier** contenant les images disques.
 * On **configure DHCP** automatiquement en cochant les cases correspondantes dans _l'Assistant de configuration_. Cocher ces cases correspond à indiquer à notre serveur DHCP qu'il est à présent serveur PXE. On configure le service PXE en déterminant le comportement du serveur lorsqu'il reçoit des requêtes DHCP d'un poste sur le domaine.
-* Selon le choix effectué à l'étape précédente, il sera peut-être nécessaire de **réserver une IP sur le réseau** pour chaque machine que l'on veut déployer automatiquement.
+* Selon le choix effectué à l'étape précédente, il sera peut-être nécessaire de **réserver une IP sur le réseau** pour chaque machine que l'on veut déployer automatiquement._([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/R%C3%A9servation%20DHCP.png))_
+
 
 #### Configuration
 Une fois l'ajout et la configuration du serveur terminé, une arborescence apparaît dans la section **Serveurs** du **Gestionnaire de service de déploiement Windows**.
@@ -135,6 +136,7 @@ Une fois l'ajout et la configuration du serveur terminé, une arborescence appar
  * On sélectionne les installations que l'on désire déployer parmi celles disponibles dans le fichier. Windows en vérifie l'intégrité et l'ajoute au pool d'images.
 * Puis, de la même façon, **Ajouter une Image de démarrage** en sélectionnant par le même procédé dans le même dossier le fichier **boot.wim**.
 * Finalement, on crée une nouvelle **Transmission par multidiffusion** en sélectionnant le groupe d'images que l'on souhaite diffuser et **valider** (Une option permet de planifier les diffusions et installation afin de réduire les impacts sur les performance du réseau, en les programmant la nuit par exemple).
+_([ScreenShot de l'interface une fois l'installation terminée](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/WDS.png))_
 
 
 #### Test du déploiement sur une Machine virtuelle
@@ -146,7 +148,7 @@ Pour ce faire, créer une nouvelle machine virtuelle.
 
 ## Configuration et Features
 ### Configuration type de l'AD en entreprise
-Depuis le bouton **Outils** du **Gestionnaire de Serveur**, sélectionner **Utilisateurs et ordinateurs Active Directory** pour ouvrir la fenêtre de gestion des différents objets de notre AD. L'architecture organisationnelle qui suit est à titre d'exemple.
+Depuis le bouton **Outils** du **Gestionnaire de Serveur**, sélectionner **Utilisateurs et ordinateurs Active Directory** pour ouvrir la fenêtre de gestion des différents objets de notre AD _([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Utilisateurs%20et%20Ordinateurs%20AD.png))_. L'architecture organisationnelle qui suit est à titre d'exemple.
 * On crée 3 Unités d'Organisation distinctes : _PAYE_, _COMPTA_, et _Etudes_.
 * Dans chacune des UO, on crée les utilisateurs dont nous avons besoin (ici, 3 par UO).
 * Dans chacune des UO, on crée un groupe de diffusion portant le nom de l'UO et contenant tous les utilisateurs.
@@ -211,4 +213,4 @@ Pour terminer, nous allons nous familiariser un peu avec le **Gestionnaire de re
 
 
 ### BGInfo
-BGInfo est un petit logiciel permettant d'afficher sur le bureau des informations systèmes choisies par l'Administrateur. Ce logiciel est très pratique en entreprise pour avoir à éviter d'ouvrir plein de fenêtres de configurations pour obtenir 1 petit renseignement (comme par exemple la passerelle par défaut) multiplié par le nombre de petits renseignements dont on a besoin. En bref, il permet d'économiser du temps et de réduire les potentielles erreurs lors de la manipulations des postes.
+BGInfo _([ScreenShot]())_ est un petit logiciel permettant d'afficher sur le bureau des informations systèmes choisies par l'Administrateur. Ce logiciel est très pratique en entreprise pour avoir à éviter d'ouvrir plein de fenêtres de configurations pour obtenir 1 petit renseignement (comme par exemple la passerelle par défaut) multiplié par le nombre de petits renseignements dont on a besoin. En bref, il permet d'économiser du temps et de réduire les potentielles erreurs lors de la manipulations des postes. Pour déployer BGInfo automatiquement sur les postes rejoignant l'AD, on peut créer une GPO comme mentionné plus haut, et le déployer automatiquement. Un bon tutoriel peut être trouvé [ici](http://www.supinfo.com/articles/single/842-mise-place-deploiement-bginfo) pour déployer automatiquement BGInfo et sa configuration.
