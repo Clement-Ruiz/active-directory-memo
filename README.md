@@ -192,8 +192,8 @@ Chercher la règle **Papier peint du Bureau** dans **Configuration utilisateurs*
 Sélectionnez un fond d'écran et **Valider** en appliquant la GPO.
 
 #### Forcer une page de démarrage par défault sur Internet Explorer
-Chercher la règle **Désactiver la modification de la page d’accueil** dans **Configuration utilisateurs** --> **Stratégies** --> **Composant Windows** --> **Internet explorer**.</br>
-Activer la règle, renseigner une page d'accueil par défaut et **Valider** en appliquant la GPO.
+Chercher la règle **Désactiver la modification de la page d’accueil** dans **Configuration utilisateurs** --> **Modèles d’administration** --> **Composant Windows** --> **Internet explorer**.</br>
+Activer la règle **Désactiver le changement de la page d'accueil**, renseigner une page d'accueil par défaut et **Valider** en appliquant la GPO.
 
 #### Ajout d'imprimantes et drivers
 Techniquement, ceci n'est pas une GPO, mais il est tout de même pratique d'ajouter une imprimante et la rendre disponibles aux machines connectées sur l'AD, ainsi qu'en installer automatiquement les drivers. </br>
@@ -206,7 +206,7 @@ Pour ce faire :
 
 #### Monter un Répertoire Réseau pour un utilisateur
 Pour se faire, créer d'ores-et-déjà un répertoire dans lequel seront stockés les fichiers utilisateurs (Par exemple C:\\UserSpace) et l'exposer sur le réseau (via DFS pour un chemin UNC en fonction du domaine AD, via l'option de **Partage** dans les propriétés du dossier pour un UNC en fonction du hostname du serveur).</br>
-A partir de là, dans l'interface de gestion des GPO se rendre dans **Configurations utilisateur** --> **Préférences** --> **Paramètres Windows** --> Clic droit sur **Mappages de lecteurs** --> **Nouveau** --> **Lecteur Mappé**. S'ouvre une fenêtre de création de nouveau lecteur. Dans celle-ci, on renseigne le nom, le chemin du dossier que l'on vient de créer suivi de "\\%USERNAME%" (ex : \\\\domain.com\\UserSpace\\%USERNAME%), nous permettant d'affecter cette règle dynamiquement en fonction de l'utilisateur.  Il est conseilllé de créer 2 règles avec les mêmes propriétés mais pour 2 actions différentes : **Créer** et **Mettre à Jour**.
+A partir de là, dans l'interface de gestion des GPO se rendre dans **Configurations utilisateur** --> **Préférences** --> **Paramètres Windows** --> Clic droit sur **Mappages de lecteurs** --> **Nouveau** --> **Lecteur Mappé**. S'ouvre une fenêtre de création de nouveau lecteur. Dans celle-ci, on renseigne le nom, le chemin du dossier que l'on vient de créer suivi de "\\%USERNAME%" (ex : \\\\domain.com\\USER\\%USERNAME%), nous permettant d'affecter cette règle dynamiquement en fonction de l'utilisateur.  Il est conseilllé de créer 2 règles avec les mêmes propriétés mais pour 2 actions différentes : **Créer** et **Mettre à Jour**.
 
 #### Paramétrer une limitation de stockage par utilisateur
 Pour terminer, nous allons nous familiariser un peu avec le **Gestionnaire de ressources du serveur de fichier**. Dans l'arborescence de gauche, nous trouvons les fonctionnalités **Gestion de quota** --> **Modèles de Quotas**. Nous pouvons choisir de créer un Modèle de Quotas, que l'on pourra ensuite utiliser lors de la création de quotas. Pour créer un quota, _Clic droit_ sur **Quotas** --> **Créer un quota** nous ouvre une fenêtre de configuration. Dans celle-ci, on renseigne l'emplacement du dossier auquel appliquer la limitation et on sélectionne dans la liste des modèles la restriction voulue ou on en édite une à la volée grâce aux _Paramètres Personnalisés_. Si on sélectionne le dossier hébergeant tous les dossiers personnels des utilisateurs de l'AD, on peut alors cocher la case _Appliquer automatiquement au modèle et créer des quotas sur les sous-dossiers existants et nouveaux_ pour restreindre la taille de chaque dossier personnel au montant définit par le modèle de quota choisit.
