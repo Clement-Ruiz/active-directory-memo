@@ -2,23 +2,22 @@
 Le document présent est un résumé / mémo de la procédure d'installation d'un service Active Directory classique dans le cadre d'une entreprise comme d'un laboratoire. Il décrit l'intégralité des différentes manipulations à effectuer pour fournir tous les services dont une entreprise aurait besoin. Ces services sont décrits ci-dessous.
 
 ## Sommaire
-1. Architecture
-  * Machines
-  * Réseau
-2. Installation des OS et des premières fonctionnalités
-  * Systèmes d'exploitation
-    * Serveur
-    * Client
-  * DNS / DHCP / Active Directory
-  * Serveur de fichier et DFS
-3. Installation des services
-  * IIS & Services d'impression
-  * WDS - Windows Deployment services
-4. Configuration et Features
-  * Quelques Stratégies de Groupe (GPO)
-  * Ajout d'imprimante et drivers
-  * Configuration type de l'AD
-  * Installation de BGInfo
+1. [Architecture](https://github.com/Clement-Ruiz/active-directory-memo#architecture)
+  * [Machines](https://github.com/Clement-Ruiz/active-directory-memo#machines)
+  * [Réseau](https://github.com/Clement-Ruiz/active-directory-memo#r%C3%A9seau)
+2. [Installation des OS et des premières fonctionnalités](https://github.com/Clement-Ruiz/active-directory-memo#installation-des-os-et-des-premi%C3%A8res-fonctionnalit%C3%A9s)
+  * [Systèmes d'exploitation](https://github.com/Clement-Ruiz/active-directory-memo#syst%C3%A8mes-dexploitation)
+    * [Serveur](https://github.com/Clement-Ruiz/active-directory-memo#serveur)
+    * [Client](https://github.com/Clement-Ruiz/active-directory-memo#client)
+  * [DNS / DHCP / Active Directory](https://github.com/Clement-Ruiz/active-directory-memo#dns--dhcp--active-directory)
+  * [Serveur de fichier et DFS](https://github.com/Clement-Ruiz/active-directory-memo#serveur-de-fichier-et-dfs)
+3. [Installation des services](https://github.com/Clement-Ruiz/active-directory-memo#installation-des-services)
+  * [IIS & Services d'impression](https://github.com/Clement-Ruiz/active-directory-memo#iis--services-dimpression)
+  * [WDS - Windows Deployment services](https://github.com/Clement-Ruiz/active-directory-memo#wds---windows-deployment-services)
+4. [Configuration et Features](https://github.com/Clement-Ruiz/active-directory-memo#configuration-et-features)
+  * [Configuration type de l'AD](https://github.com/Clement-Ruiz/active-directory-memo#configuration-type-de-lad-en-entreprise)
+  * [Quelques Stratégies de Groupe (GPO)](https://github.com/Clement-Ruiz/active-directory-memo#quelques-strat%C3%A9gies-de-groupe-gpo)
+  * [Installation de BGInfo](https://github.com/Clement-Ruiz/active-directory-memo#bginfo)
 
 ---
 ## Architecture
@@ -143,7 +142,7 @@ Pour ce faire, créer une nouvelle machine virtuelle.
 * Ouvrir l'interface de configuration du **DHCP** grâce au bouton **Outils** du **Gestionnaire de Serveur**, et sélectionner une étendue DHCP sur lequel réserver l'adresse.
 * Configurer la carte réseau pour intégrer la machine dans le réseau de notre serveur Active Directory. Récupérer **l'adresse MAC** de la carte et réserver une IP dans le réseau au travers de la **configuration DHCP**. On crée une nouvelle **Réservation** dans la section **IPv4** --> **<Notre Etendue DHCP>**, on renseigne l'IP à attribuer et l'adresse MAC de la carte réseau de la machine à déployer. On garde les 2 types de requêtes activés (DHCP et BOOTP) ainsi que les options DHCP paramétrées par défaut.
 * **Modifier le Boot Order** en ajoutant la possibilité de **boot sur le réseau** et en désignant cette option comme prioritaire.
-* Lancer la VM.
+* Lancer la VM. En cas de succès, vous obtiendrez [cet affichage](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Confirmation%20WDS.png) au boot du nouveau poste.
 
 ## Configuration et Features
 ### Configuration type de l'AD en entreprise
@@ -155,7 +154,7 @@ Depuis le bouton **Outils** du **Gestionnaire de Serveur**, sélectionner **Util
 Ces UO peuvent permettre d'attribuer plus facilement des GPO à seulement certains utilisateurs ou certains ordinateurs.
 
 ### Quelques Stratégies de Groupe (GPO)
-Toutes les stratégies de groupes décrites ci-dessous peuvent être ajoutées depuis le menu **Outils** du **Gestionnaire de Serveur** en cliquant sur **Gestion des stratégies de groupe**. Dans la fenêtre qui s'ouvre, utiliser l'arborescence de fichier à gauche en sélectionnant notre _forêt_, puis notre _domaine_ et enfin **Objets de stratégie de groupe**. _Clic droit_ ou _Action_ --> **Nouveau**. La nommer, valider, puis par le même procédé, la **Modifier**.</br>
+Toutes les stratégies de groupes décrites ci-dessous peuvent être ajoutées depuis le menu **Outils** du **Gestionnaire de Serveur** en cliquant sur **Gestion des stratégies de groupe**. Dans la fenêtre qui s'ouvre, utiliser l'arborescence de fichier à gauche en sélectionnant notre _forêt_, puis notre _domaine_ et enfin **Objets de stratégie de groupe** (_[ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Cr%C3%A9er%20une%20nouvelle%20GPO.png)_). _Clic droit_ ou _Action_ --> **Nouveau**. La nommer, valider, puis par le même procédé, la **Modifier**.</br>
 _NB : Notons que les stratégies relatives à un ordinateur nécessitent que l'ordinateur soit ajouté à l'UO à laquelle nous appliquons la GPO._
 
 #### Règlement intérieur au démarrage
