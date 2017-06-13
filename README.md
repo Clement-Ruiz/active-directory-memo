@@ -2,22 +2,22 @@
 Le document présent est un résumé / mémo de la procédure d'installation d'un service Active Directory classique dans le cadre d'une entreprise comme d'un laboratoire. Il décrit l'intégralité des différentes manipulations à effectuer pour fournir tous les services dont une entreprise aurait besoin. Ces services sont décrits ci-dessous.
 
 ## Sommaire
-* [Architecture](https://github.com/Clement-Ruiz/active-directory-memo#architecture)
-  * [Machines](https://github.com/Clement-Ruiz/active-directory-memo#machines)
-  * [Réseau](https://github.com/Clement-Ruiz/active-directory-memo#r%C3%A9seau)
-* [Installation des OS et des premières fonctionnalités](https://github.com/Clement-Ruiz/active-directory-memo#installation-des-os-et-des-premi%C3%A8res-fonctionnalit%C3%A9s)
-  * [Systèmes d'exploitation](https://github.com/Clement-Ruiz/active-directory-memo#syst%C3%A8mes-dexploitation)
-    * [Serveur](https://github.com/Clement-Ruiz/active-directory-memo#serveur)
-    * [Client](https://github.com/Clement-Ruiz/active-directory-memo#client)
-  * [DNS / DHCP / Active Directory](https://github.com/Clement-Ruiz/active-directory-memo#dns--dhcp--active-directory)
-  * [Serveur de fichier et DFS](https://github.com/Clement-Ruiz/active-directory-memo#serveur-de-fichier-et-dfs)
-* [Installation des services](https://github.com/Clement-Ruiz/active-directory-memo#installation-des-services)
-  * [IIS & Services d'impression](https://github.com/Clement-Ruiz/active-directory-memo#iis--services-dimpression)
-  * [WDS - Windows Deployment services](https://github.com/Clement-Ruiz/active-directory-memo#wds---windows-deployment-services)
-* [Configuration et Features](https://github.com/Clement-Ruiz/active-directory-memo#configuration-et-features)
-  * [Configuration type de l'AD](https://github.com/Clement-Ruiz/active-directory-memo#configuration-type-de-lad-en-entreprise)
-  * [Quelques Stratégies de Groupe (GPO)](https://github.com/Clement-Ruiz/active-directory-memo#quelques-strat%C3%A9gies-de-groupe-gpo)
-  * [Installation de BGInfo](https://github.com/Clement-Ruiz/active-directory-memo#bginfo)
+* [Architecture](https://github.com/Papy-Bretzel/active-directory-memo#architecture)
+  * [Machines](https://github.com/Papy-Bretzel/active-directory-memo#machines)
+  * [Réseau](https://github.com/Papy-Bretzel/active-directory-memo#r%C3%A9seau)
+* [Installation des OS et des premières fonctionnalités](https://github.com/Papy-Bretzel/active-directory-memo#installation-des-os-et-des-premi%C3%A8res-fonctionnalit%C3%A9s)
+  * [Systèmes d'exploitation](https://github.com/Papy-Bretzel/active-directory-memo#syst%C3%A8mes-dexploitation)
+    * [Serveur](https://github.com/Papy-Bretzel/active-directory-memo#serveur)
+    * [Client](https://github.com/Papy-Bretzel/active-directory-memo#client)
+  * [DNS / DHCP / Active Directory](https://github.com/Papy-Bretzel/active-directory-memo#dns--dhcp--active-directory)
+  * [Serveur de fichier et DFS](https://github.com/Papy-Bretzel/active-directory-memo#serveur-de-fichier-et-dfs)
+* [Installation des services](https://github.com/Papy-Bretzel/active-directory-memo#installation-des-services)
+  * [IIS & Services d'impression](https://github.com/Papy-Bretzel/active-directory-memo#iis--services-dimpression)
+  * [WDS - Windows Deployment services](https://github.com/Papy-Bretzel/active-directory-memo#wds---windows-deployment-services)
+* [Configuration et Features](https://github.com/Papy-Bretzel/active-directory-memo#configuration-et-features)
+  * [Configuration type de l'AD](https://github.com/Papy-Bretzel/active-directory-memo#configuration-type-de-lad-en-entreprise)
+  * [Quelques Stratégies de Groupe (GPO)](https://github.com/Papy-Bretzel/active-directory-memo#quelques-strat%C3%A9gies-de-groupe-gpo)
+  * [Installation de BGInfo](https://github.com/Papy-Bretzel/active-directory-memo#bginfo)
 
 ---
 ## Architecture
@@ -76,7 +76,7 @@ Nos machines sont prêtes à l'emploi. Installons les différents services de ba
   * Nous **ajoutons le contrôleur de domaine à un domaine existant** : ici domain.com</br>
   Des informations d'authentification sont nécessaires : **on s'authentifie** en tant qu'administrateur du domaine (Administrateur/MotDePasseAdminDeActiveDirectory). </br>--> **Suivant**
   * Le nouveau contrôleur de domaine peut être utilisé comme DNS secondaire. Cocher ou non la case correspondante pour activer le rôle. On tape un **mot de passe DSRM** comme pour le 1er serveur AD. </br>--> **Suivant**
-  * Après vérification de la configuration, cliquer sur **Installer**. A la fin de l'installation, comme pour le premier serveur, un redémarrage sera nécessaire, et nous pourrons nous connecter en tant qu'utilisateur ou administrateur du domaine. _([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Domain%20Authent.png))_
+  * Après vérification de la configuration, cliquer sur **Installer**. A la fin de l'installation, comme pour le premier serveur, un redémarrage sera nécessaire, et nous pourrons nous connecter en tant qu'utilisateur ou administrateur du domaine. _([ScreenShot](https://github.com/Papy-Bretzel/active-directory-memo/blob/master/ScreenShots/Domain%20Authent.png))_
 
 ### Serveur de fichier et DFS
 Le rôle **Serveur de fichier** est un des rôles les plus couramment utilisés. Pour que ce rôle soit utilisable, nous avons besoin d'une **partition NTFS** de données. On peut facilement en créer une depuis le **Gestionnaire de Serveur** via le bouton **Outils** en haut à droite et l'option **Gestion de l'ordinateur**. Dans la fenêtre qui s'ouvre, sélectionner l'onglet **Stockage** --> **Gestion des Disques**.
@@ -91,7 +91,7 @@ Pour commencer, nous allons créer un espace de nom en cliquant sur **Action** -
 * Choisir un type d'espace de nom (Local / Domaine)</br>--> **Suivant**
 * Confirmer la configuration et **Créer** l'espace de nom.
 
-Dès lors, nous pouvons accéder au contenu du dossier ainsi créé depuis n'importe quel ordinateur du domaine via l'explorateur de fichier ( \\\\domain.com\NomDeLEspaceDeNom ). Le chemin d'accès du dossier sur le serveur hébergeur est par défault sur la partition système (ex C:) dans C:\\_DFSRoots_\\_NomDeLEspaceDeNom_ _([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/DFS.png))_
+Dès lors, nous pouvons accéder au contenu du dossier ainsi créé depuis n'importe quel ordinateur du domaine via l'explorateur de fichier ( \\\\domain.com\NomDeLEspaceDeNom ). Le chemin d'accès du dossier sur le serveur hébergeur est par défault sur la partition système (ex C:) dans C:\\_DFSRoots_\\_NomDeLEspaceDeNom_ _([ScreenShot](https://github.com/Papy-Bretzel/active-directory-memo/blob/master/ScreenShots/DFS.png))_
 
 #### Réplication DFS
 Toujours depuis le **Gestionnaire du système de fichier distribués DFS**, on crée un **Nouveau groupe de réplication**, et une fenêtre s'ouvre.
@@ -103,17 +103,17 @@ Toujours depuis le **Gestionnaire du système de fichier distribués DFS**, on c
 * Puis nous renseignons le **chemin du dossier de destination** sur chacun des serveurs membre du groupe de réplication (avec la possibilité de le paramétrer en lecture seule).
 * Finalement, on **Vérifie les paramètres** puis **Confirme** la création du groupe de réplication.
 
-Nos dossiers sont maintenant correctement répliqués sur chacun des membres du groupe de réplication._([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Replication%20DFS.png))_
+Nos dossiers sont maintenant correctement répliqués sur chacun des membres du groupe de réplication._([ScreenShot](https://github.com/Papy-Bretzel/active-directory-memo/blob/master/ScreenShots/Replication%20DFS.png))_
 
 ## Installation des services
 ### IIS & Services d'impression
 Ces 2 fonctionnalités sont facilement installables via le bouton **Gérer** du **Gestionnaire de serveur**. Comme pour les autres services, nous allons les sélectionner dans la liste, ajoutons les fonctionnalités proposées par défaut et procédons à l'installation.
 
 #### ISS - Serveur Web
-Windows propose une [interface](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/IIS%20-%20Page%20d'accueil%20S1AD1.png) de création, administration et configuration de sites web sur une flotte de serveur présent dans un même domaine, que l'on peut trouver grâce au bouton **Outils** --> **Gestionnaire des services internet (IIS)** du **Gestionnaire de serveur**. Ajouter des pages, restreindre des IP, gérer directement les domaines et sous domaines, Imposer des authentifications ou activer le chiffrement des échanges par les protocoles SSL/TLS; toutes ces options sont disponibles depuis cet interface.
+Windows propose une [interface](https://github.com/Papy-Bretzel/active-directory-memo/blob/master/ScreenShots/IIS%20-%20Page%20d'accueil%20S1AD1.png) de création, administration et configuration de sites web sur une flotte de serveur présent dans un même domaine, que l'on peut trouver grâce au bouton **Outils** --> **Gestionnaire des services internet (IIS)** du **Gestionnaire de serveur**. Ajouter des pages, restreindre des IP, gérer directement les domaines et sous domaines, Imposer des authentifications ou activer le chiffrement des échanges par les protocoles SSL/TLS; toutes ces options sont disponibles depuis cet interface.
 
 #### Serveur d'impression
-On peut le configurer lui aussi depuis le bouton **Outils** --> **Gestion de l'impression** du **Gestionnaire de serveur**. Il permet de gérer les différentes imprimantes et serveurs d'impressions de l'AD, ainsi que les différents pilotes installés _([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Gestion%20de%20L'impression.png))_. Une fonctionnalité permet de créer des filtres d'imprimantes pour les très grosses architectures.
+On peut le configurer lui aussi depuis le bouton **Outils** --> **Gestion de l'impression** du **Gestionnaire de serveur**. Il permet de gérer les différentes imprimantes et serveurs d'impressions de l'AD, ainsi que les différents pilotes installés _([ScreenShot](https://github.com/Papy-Bretzel/active-directory-memo/blob/master/ScreenShots/Gestion%20de%20L'impression.png))_. Une fonctionnalité permet de créer des filtres d'imprimantes pour les très grosses architectures.
 
 ### WDS - Windows Deployment Services
 #### Installation
@@ -125,7 +125,7 @@ Une fois installé on le configure : **Outils** --> **Services de déploiement W
 * Si un AD est installé sur le serveur et si celui en est un des contrôleurs de domaine, on peut **ajouter le service de déploiement au domaine de l'AD**. Nous choisissons ici cette option.
 * On **renseigne le chemin du dossier** contenant les images disques.
 * On **configure DHCP** automatiquement en cochant les cases correspondantes dans _l'Assistant de configuration_. Cocher ces cases correspond à indiquer à notre serveur DHCP qu'il est à présent serveur PXE. On configure le service PXE en déterminant le comportement du serveur lorsqu'il reçoit des requêtes DHCP d'un poste sur le domaine.
-* Selon le choix effectué à l'étape précédente, il sera peut-être nécessaire de **réserver une IP sur le réseau** pour chaque machine que l'on veut déployer automatiquement._([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/R%C3%A9servation%20DHCP.png))_
+* Selon le choix effectué à l'étape précédente, il sera peut-être nécessaire de **réserver une IP sur le réseau** pour chaque machine que l'on veut déployer automatiquement._([ScreenShot](https://github.com/Papy-Bretzel/active-directory-memo/blob/master/ScreenShots/R%C3%A9servation%20DHCP.png))_
 
 
 #### Configuration
@@ -136,7 +136,7 @@ Une fois l'ajout et la configuration du serveur terminé, une arborescence appar
  * On sélectionne les installations que l'on désire déployer parmi celles disponibles dans le fichier. Windows en vérifie l'intégrité et l'ajoute au pool d'images.
 * Puis, de la même façon, **Ajouter une Image de démarrage** en sélectionnant par le même procédé dans le même dossier le fichier **boot.wim**.
 * Finalement, on crée une nouvelle **Transmission par multidiffusion** en sélectionnant le groupe d'images que l'on souhaite diffuser et **valider** (Une option permet de planifier les diffusions et installation afin de réduire les impacts sur les performance du réseau, en les programmant la nuit par exemple).
-_([ScreenShot de l'interface une fois l'installation terminée](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/WDS.png))_
+_([ScreenShot de l'interface une fois l'installation terminée](https://github.com/Papy-Bretzel/active-directory-memo/blob/master/ScreenShots/WDS.png))_
 
 
 #### Test du déploiement sur une Machine virtuelle
@@ -144,11 +144,11 @@ Pour ce faire, créer une nouvelle machine virtuelle.
 * Ouvrir l'interface de configuration du **DHCP** grâce au bouton **Outils** du **Gestionnaire de Serveur**, et sélectionner une étendue DHCP sur lequel réserver l'adresse.
 * Configurer la carte réseau pour intégrer la machine dans le réseau de notre serveur Active Directory. Récupérer **l'adresse MAC** de la carte et réserver une IP dans le réseau au travers de la **configuration DHCP**. On crée une nouvelle **Réservation** dans la section **IPv4** --> **<Notre Etendue DHCP>**, on renseigne l'IP à attribuer et l'adresse MAC de la carte réseau de la machine à déployer. On garde les 2 types de requêtes activés (DHCP et BOOTP) ainsi que les options DHCP paramétrées par défaut.
 * **Modifier le Boot Order** en ajoutant la possibilité de **boot sur le réseau** et en désignant cette option comme prioritaire.
-* Lancer la VM. En cas de succès, vous obtiendrez [cet affichage](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Confirmation%20WDS.png) au boot du nouveau poste.
+* Lancer la VM. En cas de succès, vous obtiendrez [cet affichage](https://github.com/Papy-Bretzel/active-directory-memo/blob/master/ScreenShots/Confirmation%20WDS.png) au boot du nouveau poste.
 
 ## Configuration et Features
 ### Configuration type de l'AD en entreprise
-Depuis le bouton **Outils** du **Gestionnaire de Serveur**, sélectionner **Utilisateurs et ordinateurs Active Directory** pour ouvrir la fenêtre de gestion des différents objets de notre AD _([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Utilisateurs%20et%20Ordinateurs%20AD.png))_. L'architecture organisationnelle qui suit est à titre d'exemple.
+Depuis le bouton **Outils** du **Gestionnaire de Serveur**, sélectionner **Utilisateurs et ordinateurs Active Directory** pour ouvrir la fenêtre de gestion des différents objets de notre AD _([ScreenShot](https://github.com/Papy-Bretzel/active-directory-memo/blob/master/ScreenShots/Utilisateurs%20et%20Ordinateurs%20AD.png))_. L'architecture organisationnelle qui suit est à titre d'exemple.
 * On crée 3 Unités d'Organisation distinctes : _PAYE_, _COMPTA_, et _Etudes_.
 * Dans chacune des UO, on crée les utilisateurs dont nous avons besoin (ici, 3 par UO).
 * Dans chacune des UO, on crée un groupe de diffusion portant le nom de l'UO et contenant tous les utilisateurs.
@@ -156,7 +156,7 @@ Depuis le bouton **Outils** du **Gestionnaire de Serveur**, sélectionner **Util
 Ces UO peuvent permettre d'attribuer plus facilement des GPO à seulement certains utilisateurs ou certains ordinateurs.
 
 ### Quelques Stratégies de Groupe (GPO)
-Toutes les stratégies de groupes décrites ci-dessous peuvent être ajoutées depuis le menu **Outils** du **Gestionnaire de Serveur** en cliquant sur **Gestion des stratégies de groupe**. Dans la fenêtre qui s'ouvre, utiliser l'arborescence de fichier à gauche en sélectionnant notre _forêt_, puis notre _domaine_ et enfin **Objets de stratégie de groupe** (_[ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/Cr%C3%A9er%20une%20nouvelle%20GPO.png)_). _Clic droit_ ou _Action_ --> **Nouveau**. La nommer, valider, puis par le même procédé, la **Modifier**.</br>
+Toutes les stratégies de groupes décrites ci-dessous peuvent être ajoutées depuis le menu **Outils** du **Gestionnaire de Serveur** en cliquant sur **Gestion des stratégies de groupe**. Dans la fenêtre qui s'ouvre, utiliser l'arborescence de fichier à gauche en sélectionnant notre _forêt_, puis notre _domaine_ et enfin **Objets de stratégie de groupe** (_[ScreenShot](https://github.com/Papy-Bretzel/active-directory-memo/blob/master/ScreenShots/Cr%C3%A9er%20une%20nouvelle%20GPO.png)_). _Clic droit_ ou _Action_ --> **Nouveau**. La nommer, valider, puis par le même procédé, la **Modifier**.</br>
 _NB : Notons que les stratégies relatives à un ordinateur nécessitent que l'ordinateur soit ajouté à l'UO à laquelle nous appliquons la GPO._
 
 #### Règlement intérieur au démarrage
@@ -213,4 +213,4 @@ Pour terminer, nous allons nous familiariser un peu avec le **Gestionnaire de re
 
 
 ### BGInfo
-BGInfo _([ScreenShot](https://github.com/Clement-Ruiz/active-directory-memo/blob/master/ScreenShots/BGInfo.png))_ est un petit logiciel permettant d'afficher sur le bureau des informations systèmes choisies par l'Administrateur. Ce logiciel est très pratique en entreprise pour avoir à éviter d'ouvrir plein de fenêtres de configurations pour obtenir 1 petit renseignement (comme par exemple la passerelle par défaut) multiplié par le nombre de petits renseignements dont on a besoin. En bref, il permet d'économiser du temps et de réduire les potentielles erreurs lors de la manipulations des postes. Pour déployer BGInfo automatiquement sur les postes rejoignant l'AD, on peut créer une GPO comme mentionné plus haut, et le déployer automatiquement. Un bon tutoriel peut être trouvé [ici](http://www.supinfo.com/articles/single/842-mise-place-deploiement-bginfo) pour déployer automatiquement BGInfo et sa configuration.
+BGInfo _([ScreenShot](https://github.com/Papy-Bretzel/active-directory-memo/blob/master/ScreenShots/BGInfo.png))_ est un petit logiciel permettant d'afficher sur le bureau des informations systèmes choisies par l'Administrateur. Ce logiciel est très pratique en entreprise pour avoir à éviter d'ouvrir plein de fenêtres de configurations pour obtenir 1 petit renseignement (comme par exemple la passerelle par défaut) multiplié par le nombre de petits renseignements dont on a besoin. En bref, il permet d'économiser du temps et de réduire les potentielles erreurs lors de la manipulations des postes. Pour déployer BGInfo automatiquement sur les postes rejoignant l'AD, on peut créer une GPO comme mentionné plus haut, et le déployer automatiquement. Un bon tutoriel peut être trouvé [ici](http://www.supinfo.com/articles/single/842-mise-place-deploiement-bginfo) pour déployer automatiquement BGInfo et sa configuration.
